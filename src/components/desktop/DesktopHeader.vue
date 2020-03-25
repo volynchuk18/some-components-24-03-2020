@@ -3,13 +3,15 @@
     <div class="desktop-header-pagination">
       <div
         class="desktop-header-pagination__item active"
+        @click="pageClickHandler(item)"
         v-for="item in pageItems"
         :key="item"
+        :class="{'active-hovered': active === item}"
       >
         {{ item }}
       </div>
     </div>
-    <div class="desktop-header-logo font-vollkorn">
+    <div class="desktop-header-logo font-vollkorn font-color-white">
       <img src="@/assets/svg/logo.svg">
       <div>
         Midas.Investments
@@ -19,7 +21,7 @@
       <div class="desktop-header-user-info__btc-value active">
         {{ user.btc }} BTC
       </div>
-      <div @click="clickHandler" class="desktop-header-user-info__user-name active">
+      <div class="desktop-header-user-info__user-name active">
         <div> {{ user.name }} </div>
         <svg
           width="11"
@@ -50,6 +52,7 @@ export default {
   name: 'DesktopHeader',
   data() {
     return {
+      active: null,
       pageItems: [
         'Platform',
         'Exchange',
@@ -63,8 +66,8 @@ export default {
     };
   },
   methods: {
-    clickHandler() {
-      console.log(this.$refs.svg);
+    pageClickHandler(title) {
+      this.active = title;
     },
   },
 };
@@ -90,7 +93,6 @@ export default {
       display: flex;
       flex-direction: column;
       margin: auto;
-      color: #FAF8F5;
       & > div {
         margin-top: 5px;
       }

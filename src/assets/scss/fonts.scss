@@ -1,5 +1,23 @@
+// variables
+$color-white: #FAF8F5;
+$color-green: #00D98B;
+
+
+// styles
 .font-vollkorn {
   font-family: 'Vollkorn', serif;
+}
+
+.font-size {
+  &-14 {
+    font-size: 14px;
+  }
+  &-16 {
+    font-size: 16px;
+  }
+  &-24 {
+    font-size: 24px;
+  }
 }
 
 html {
@@ -7,12 +25,15 @@ html {
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 1.2em;
   color: #717F94;
 }
 
 .active {
   transition: .15s;
+  &-hovered {
+    color: #FFFFFF;
+  }
 }
 
 .active:hover {
