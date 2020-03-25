@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="desktop-header-logo font-vollkorn font-color-white">
-      <img src="@/assets/svg/logo.svg">
+      <img src="@/assets/svg/logo.svg" alt="logo">
       <div>
         Midas.Investments
       </div>

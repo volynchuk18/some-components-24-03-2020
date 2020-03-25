@@ -2,6 +2,7 @@
   <div id="app">
     <desktop-header />
     <desktop-card />
+    <buttons-container />
     <router-view/>
   </div>
 </template>
@@ -12,9 +13,10 @@
 <script>
 import DesktopHeader from './components/desktop/DesktopHeader.vue';
 import DesktopCard from './components/desktop/DesktopCard.vue';
+import ButtonsContainer from './components/ButtonsContainer.vue';
 
 export default {
-  components: { DesktopCard, DesktopHeader },
+  components: { ButtonsContainer, DesktopCard, DesktopHeader },
 };
 </script>
 
