@@ -222,11 +222,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .buttons {
+    width: 100vw;
+  }
   .buttons-container {
     margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(3, 0fr);
     grid-gap: 50px;
+    overflow: auto;
   }
   .loading-icon {
     margin-top: 50px;
