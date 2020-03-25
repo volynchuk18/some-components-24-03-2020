@@ -39,7 +39,7 @@
             0.449167C1.55254 0.183612 1.15436 0.183612 0.91704 0.449167C0.694371 0.698328 0.69432
             1.09243 0.916886 1.34166L6 7.16019Z"
             stroke-width="0.5"
-            stroke="currentColor"
+            stroke="inherit"
           />
         </svg>
       </div>
@@ -105,6 +105,7 @@ export default {
       }
       &__user-name {
         display: flex;
+        align-items: center;
         margin-left: 28px;
         & > div {
           overflow: hidden;
