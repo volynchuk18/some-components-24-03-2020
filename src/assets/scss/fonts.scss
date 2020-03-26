@@ -33,6 +33,10 @@ html {
   transition: .15s;
   &-hovered {
     color: #FFFFFF;
+    &-background {
+      @extend .active-hovered;
+      background: rgba(255, 255, 255, 0.03);
+    }
   }
 }
 

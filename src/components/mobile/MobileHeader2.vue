@@ -2,9 +2,6 @@
   <div class="mobile-header">
     <div class="mobile-header-logo">
       <img src="@/assets/svg/logo.svg" alt="logo">
-      <span class="font-vollkorn">
-        Midas
-      </span>
     </div>
     <img
       v-if="!show"
@@ -20,7 +17,7 @@
       alt="logo"
       @click="menuIconClickHandler"
     >
-    <mobile-menu
+    <mobile-menu2
       :logged-in="loggedIn"
       @close="closeMenu"
       :show="show"
@@ -29,21 +26,21 @@
 </template>
 
 <script>
-import MobileMenu from './MobileMenu.vue';
+import MobileMenu2 from './MobileMenu2.vue';
 
 export default {
-  name: 'MobileHeader',
-  components: { MobileMenu },
-  data() {
-    return {
-      show: false,
-    };
-  },
+  name: 'MobileHeader2',
+  components: { MobileMenu2 },
   props: {
     loggedIn: {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      show: true,
+    };
   },
   methods: {
     menuIconClickHandler() {
@@ -75,6 +72,7 @@ export default {
     &-logo {
       display: flex;
       flex-direction: column;
+      height: 22px;
       & > {
         span {
           color: $color-white;

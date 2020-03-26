@@ -7,3 +7,9 @@ body {
   line-height: 1.05em;
   box-sizing: border-box;
 }
+
+#app {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}

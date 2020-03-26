@@ -223,6 +223,9 @@ export default {
 
 <style lang="scss" scoped>
   .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100vw;
   }
   .buttons-container {
@@ -230,7 +233,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 0fr);
     grid-gap: 50px;
-    overflow: auto;
+    overflow: hidden;
   }
   .loading-icon {
     margin-top: 50px;

@@ -60,7 +60,7 @@ export default {
   @import '@/assets/scss/fonts.scss';
 
   .desktop-card {
-    margin-top: 100px;
+    margin: 100px auto;
     background: rgba(17, 26, 40, 0.85);
     backdrop-filter: blur(15px);
     padding: 30px;

@@ -1,9 +1,11 @@
 <template>
-  <div v-if="show" class="mobile-menu">
+  <div ref="menu" class="mobile-menu">
     <div
       class="mobile-menu-item"
-      v-for="item in menuItems"
+      v-for="item in items"
       :key="item"
+      @click="active = item"
+      :class="{'active-hovered': active === item}"
     >
       {{ item }}
     </div>
@@ -15,15 +17,10 @@
 <script>
 export default {
   name: 'MobileMenu',
-  props: {
-    show: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data() {
     return {
-      menuItems: [
+      active: null,
+      menuItemsLoggedIn: [
         'Platform',
         'Profile',
         'BTC balance',
@@ -32,7 +29,45 @@ export default {
         'Midas coin',
         'Sign out',
       ],
+      menuItems: [
+        'Platform',
+        'Fline trading  bot',
+        'Midas coin',
+        'Sign in',
+      ],
     };
+  },
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
+    loggedIn: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  watch: {
+    show: {
+      async handler(to) {
+        await this.$nextTick();
+        if (to) {
+          this.$refs.menu.style.height = 'calc(640px - 142px)';
+          // eslint-disable-next-line no-return-assign
+          setTimeout(() => this.$refs.menu.style.overflow = 'visible', 100);
+        } else {
+          this.$refs.menu.style.height = '0';
+          // eslint-disable-next-line no-return-assign
+          this.$refs.menu.style.overflow = 'hidden';
+        }
+      },
+      immediate: true,
+    },
+  },
+  computed: {
+    items() {
+      return this.loggedIn ? this.menuItemsLoggedIn : this.menuItems;
+    },
   },
 };
 </script>
@@ -40,15 +75,17 @@ export default {
 <style lang="scss" scoped>
  .mobile-menu {
    position: absolute;
-   top: 68px;
+   top: 70px;
    left: 0;
    width: calc(100% - 57px);
-   height: calc(640px - 68px);
+   height: calc(640px - 142px);
    color: #717F94;
    background: rgba(9, 12, 19, 0.86);
    backdrop-filter: blur(10px);
+   transition: 0.1s linear;
+   overflow: hidden;
    &-item {
-     height: 50px;
+     height: 44px;
      display: flex;
      align-items: center;
      padding-left: 20px;
@@ -56,7 +93,7 @@ export default {
    }
  }
   .background {
-    position: absolute;
+    position: fixed;
     z-index: -1;
     top: 0;
     left: 0;
