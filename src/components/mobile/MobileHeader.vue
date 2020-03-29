@@ -1,25 +1,21 @@
 <template>
   <div class="mobile-header">
     <div class="mobile-header-logo">
-      <img src="@/assets/svg/logo.svg" alt="logo">
+      <icon-logo />
       <span class="font-vollkorn">
         Midas
       </span>
     </div>
-    <img
+    <icon-mobile-menu
       v-if="!show"
       class="mobile-header-menu-icon"
-      src="@/assets/svg/mobile-menu.svg"
-      alt="logo"
       @click="menuIconClickHandler"
-    >
-    <img
+    />
+    <icon-close
       v-else
       class="mobile-header-menu-icon"
-      src="@/assets/svg/close.svg"
-      alt="logo"
       @click="menuIconClickHandler"
-    >
+    />
     <mobile-menu
       :logged-in="loggedIn"
       @close="closeMenu"
@@ -30,10 +26,18 @@
 
 <script>
 import MobileMenu from './MobileMenu.vue';
+import IconClose from '../icons/IconClose.vue';
+import IconLogo from '../icons/IconLogo.vue';
+import IconMobileMenu from '../icons/IconMobileMenu.vue';
 
 export default {
   name: 'MobileHeader',
-  components: { MobileMenu },
+  components: {
+    IconMobileMenu,
+    IconLogo,
+    IconClose,
+    MobileMenu,
+  },
   data() {
     return {
       show: false,
@@ -51,11 +55,6 @@ export default {
     },
     closeMenu() {
       this.show = false;
-    },
-  },
-  computed: {
-    menuIconSrc() {
-      return this.show ? '@/assets/svg/mobile-menu.svg' : '../../assets/svg/close.svg';
     },
   },
 };

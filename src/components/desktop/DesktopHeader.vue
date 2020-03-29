@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="desktop-header-logo font-vollkorn font-color-white">
-      <img src="@/assets/svg/logo.svg" alt="logo">
+      <icon-logo />
       <div>
         Midas.Investments
       </div>
@@ -48,8 +48,11 @@
 </template>
 
 <script>
+import IconLogo from '../icons/IconLogo.vue';
+
 export default {
   name: 'DesktopHeader',
+  components: { IconLogo },
   data() {
     return {
       active: null,

@@ -21,7 +21,7 @@
     </div>
     <div class="desktop-card-wallet">
       <div class="desktop-card-wallet-value">
-        <img src="@/assets/svg/dollar.svg" alt="dollar">
+        <icon-dollar />
         <span class="font-size-24">1 183.74</span>
       </div>
       <div class="desktop-card-wallet-dash font-size-14">
@@ -44,15 +44,19 @@
       </div>
       <div class="desktop-card-today-increase">
         +4.43%
-        <img src="@/assets/svg/arrow-top.svg" alt="arrow-top">
+        <icon-arrow-top />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import IconDollar from '../icons/IconDollar.vue';
+import IconArrowTop from '../icons/IconArrowTop.vue';
+
 export default {
   name: 'DesktopCard',
+  components: { IconArrowTop, IconDollar },
 };
 </script>
 

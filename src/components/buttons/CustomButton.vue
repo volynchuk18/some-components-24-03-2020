@@ -2,44 +2,14 @@
   <div
     @click="$emit('click')"
     class="button-container"
-    :style="{'color': color}"
   >
     <button
       @submit="$emit('submit')"
       class="custom-button"
-      :class="buttonClass"
-      :style="[
-      {'background': background},
-      {'border': border},
-      {'textDecoration': textDecoration},
-      {'textTransform': textTransform}
-    ]"
+      :class="type"
     >
-      {{ title }}
+      <slot />
     </button>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      v-if="symbol"
-    >
-      <path
-        d="M10.1302
-        9.35635V10.129H1.86981V1.86971H4.07799H4.17799V1.76971V1V0.9H4.07799H1.97325C1.6299
-        0.9 1.35611 0.982179 1.16915 1.16911C0.982192 1.35605 0.9 1.62981 0.9 1.97313V10.116C0.9
-        10.4591 0.982218 10.7148 1.17459 10.8805C1.36336 11.0431 1.63698 11.1
-        1.97325 11.1H10.018C10.3543 11.1 10.6297 11.0431 10.8205 10.8809C11.0152 10.7155 11.1
-        10.4599 11.1 10.116V7.9224V7.8224H11H10.2302H10.1302V7.9224V9.35635ZM11.1 1V0.9H11
-        H6H5.9V1V1.76971V1.86971H6H9.37462L4.00603 7.23641L3.93529 7.30712L4.00602 7.37785L4.62137
-        7.99312L4.69208 8.06381L4.76278 7.99312L10.1302 2.62638V6.20956V6.30956H10.2302
-        H11H11.1V6.20956V1Z"
-        fill="currentColor"
-        stroke="currentColor"
-        stroke-width="0.2"
-      />
-    </svg>
   </div>
 </template>
 
@@ -47,49 +17,7 @@
 export default {
   name: 'CustomButton',
   props: {
-    size: {
-      type: String,
-      default: 'normal',
-    },
-    background: {
-      type: String,
-      default: 'transparent',
-    },
-    border: {
-      type: String,
-      default: 'none',
-    },
-    color: {
-      type: String,
-      default: '#FFFFFF',
-    },
-    textDecoration: {
-      type: String,
-      default: 'unset',
-    },
-    textTransform: {
-      type: String,
-      default: 'unset',
-    },
-    symbol: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    buttonClass() {
-      return `custom-button-${this.size}`;
-    },
-    title() {
-      switch (this.size) {
-        case 'big':
-          return 'BTN BIG';
-        case 'small':
-          return 'Button';
-        default:
-          return 'BUTTON';
-      }
-    },
+    type: String,
   },
 };
 </script>
@@ -109,23 +37,112 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    &-big {
-      @extend .custom-button;
-      width: 225px;
-      height: 64px;
-      font-size: 16px;
+    transition-property: color, background-color;
+    transition-duration: .1s;
+    font-size: 16px;
+    border: none;
+    @extend .big;
+  }
+
+  .big {
+    width: 225px;
+    height: 64px;
+  }
+
+  .small {
+    width: 167px;
+    height: 50px;
+  }
+
+  .hover-underline:hover {
+    text-decoration: underline;
+  }
+
+  .primary {
+    color: white;
+    background: rgb(0, 91, 233);
+    border: none;
+    &:hover {
+      background: rgb(0, 73, 186);
     }
-    &-normal {
-      @extend .custom-button;
-      width: 167px;
-      height: 50px;
-      font-size: 12px;
+    &:active {
+      background: rgb(0, 52, 132);
     }
-    &-small {
-      &:focus {
-        outline: 1px solid inherit;
-        outline-offset: 10px;
+    &-empty {
+      background: transparent;
+      color: #005BE9;
+      border: 3px solid #005BE9;
+      &:hover {
+        color: #FFFFFF;
+        background: #005BE9;
       }
+      &:active {
+        border: 3px solid #0049BA;
+        background: #0049BA;
+      }
+    }
+  }
+  .light {
+    color: #000000;
+    background: white;
+    &:hover {
+      background: #EBEDF1;
+    }
+    &:active {
+      background: #CCCCD1;
+    }
+  }
+
+  .warning {
+    &-empty {
+      @extend .warning;
+      color: #E14726;
+      background-color: transparent;
+      border: 3px solid #E14726;
+      &:hover {
+        color: white;
+        background: #E14726;
+      }
+      &:active {
+        background: #E13126;
+      }
+    }
+  }
+
+  .transparent {
+    @extend .big;
+    border: 3px solid #FFFFFF;
+    color: #FFFFFF;
+    background: transparent;
+    &:hover {
+      color: white;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    &:active {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .simple {
+    width: unset;
+    height: unset;
+    background: transparent;
+    color: #005BE9;
+    &:hover {
+      color: #0049BA;
+    }
+    &:active {
+      color: #003484;
+    }
+  }
+
+  .color-switch {
+    color: #FFFFFF;
+    &:hover {
+      color: #005BE9;
+    }
+    &:active {
+      color: #0049BA;
     }
   }
 </style>

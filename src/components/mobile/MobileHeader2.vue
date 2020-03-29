@@ -1,22 +1,18 @@
 <template>
   <div class="mobile-header">
     <div class="mobile-header-logo">
-      <img src="@/assets/svg/logo.svg" alt="logo">
+      <icon-logo />
     </div>
-    <img
+    <icon-mobile-menu
       v-if="!show"
       class="mobile-header-menu-icon"
-      src="@/assets/svg/mobile-menu.svg"
-      alt="logo"
       @click="menuIconClickHandler"
-    >
-    <img
+    />
+    <icon-close
       v-else
       class="mobile-header-menu-icon"
-      src="@/assets/svg/close.svg"
-      alt="logo"
       @click="menuIconClickHandler"
-    >
+    />
     <mobile-menu2
       :logged-in="loggedIn"
       @close="closeMenu"
@@ -27,10 +23,18 @@
 
 <script>
 import MobileMenu2 from './MobileMenu2.vue';
+import IconClose from '../icons/IconClose.vue';
+import IconLogo from '../icons/IconLogo.vue';
+import IconMobileMenu from '../icons/IconMobileMenu.vue';
 
 export default {
   name: 'MobileHeader2',
-  components: { MobileMenu2 },
+  components: {
+    IconMobileMenu,
+    IconLogo,
+    IconClose,
+    MobileMenu2,
+  },
   props: {
     loggedIn: {
       type: Boolean,
